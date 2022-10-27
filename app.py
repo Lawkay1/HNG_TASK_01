@@ -3,8 +3,8 @@ import os
 import json
 
 app = Flask(__name__)
-
-
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+#app.config['JSON_SORT_KEYS']=False
 @app.route('/')
 def get_slack():
     slackUsername = 'ibukun Lawson'
@@ -13,11 +13,14 @@ def get_slack():
     bio = 'I am an highly dedicated software engineer. Scaling leaps and bounds is my second nature'
 
     data = {
-        'bio': bio,
+        'slackUserName': slackUsername,
         'backend': backend,
         'age': age,
-        'slackUserName': slackUsername,
+        'bio': bio,
+
+
+
 
     }
 
-    return jsonify(data), 200
+    return json.dumps(data), 200
